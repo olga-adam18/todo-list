@@ -65,6 +65,29 @@ class TodoApp {
         this.save();
         this.form.reset();  
     }
+    onClick(e){
+        const target = e.target;
+
+        if(target.id === 'delete'){
+            this.deleteTodo(e);
+        }
+        else if(target.id === 'edit'){
+            this.editTodo(e);
+        }
+        else if(target.id === 'save'){
+            this.saveTodo(e);
+        }
+    }
+
+    deleteTodo(e){
+        const parent = e.target.parentNode;
+        const todoId = Number(parent.getAttribute('id'));
+
+        parent.remove();
+
+        this.todosArr = this.todosArr.filter(todo => todo.id != todoId);
+        this.save();
+    }
 
     
 }
