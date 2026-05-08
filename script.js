@@ -88,6 +88,23 @@ class TodoApp {
         this.todosArr = this.todosArr.filter(todo => todo.id != todoId);
         this.save();
     }
+    editTodo(e){
+        const parent = e.target.parentNode;
+        const textEl = parent.children[2];
+
+        const input = document.createElement('input');
+        input.value = textEl.textContent;
+
+        const saveBtn = document.createElement('button');
+        saveBtn.textContent = 'Save';
+        saveBtn.setAttribute('id','save');
+
+        parent.removeChild(textEl);
+        parent.removeChild();
+
+        parent.appendChild(input);
+        parent.appendChild(saveBtn);
+    }
 
     
 }
