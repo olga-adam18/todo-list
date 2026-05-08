@@ -105,6 +105,36 @@ class TodoApp {
         parent.appendChild(input);
         parent.appendChild(saveBtn);
     }
+    saveTodo(e){
+        const parent = e.target.parentNode;
+        const input = parent.children[0];
+
+        const text = input.value;
+
+        const textEl = document.createElement('h3');
+        textEl.textContent = text;
+
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit';
+        editBtn.setAttribute('id','edit');
+
+        parent.removeChild(input);
+        parent.removeChild(e.target);
+
+        parent.appendChild(textEl);
+        parent.appendChild(editBtn);
+
+        const todoId = Number(parent.getAttribute('id'));
+
+        const todoObj = this.todosArr.find(todo => todo.id == todoId);
+        if(todoObj){
+            todoObj.todoText = text;
+        }
+
+        this.save();
+    }
 
     
 }
+// pornire aplicație
+new TodoApp();
